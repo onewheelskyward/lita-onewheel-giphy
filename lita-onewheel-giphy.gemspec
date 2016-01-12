@@ -1,12 +1,12 @@
 Gem::Specification.new do |spec|
   spec.name          = 'lita-onewheel-giphy'
-  spec.version       = '0.1.0'
+  spec.version       = '0.0.0'
   spec.authors       = ['Andrew Kreps']
   spec.email         = ['andrew.kreps@gmail.com']
-  spec.description   = 'TODO: Add a description'
-  spec.summary       = 'TODO: Add a summary'
-  spec.homepage      = 'TODO: Add a homepage'
-  spec.license       = 'TODO: Add a license'
+  spec.description   = 'Lita chat interface to giphy api for MOAR GIFS'
+  spec.summary       = 'Add a summary'
+  spec.homepage      = 'https://github.com/onewheelskyward/lita-onewheel-giphy'
+  spec.license       = 'MIT'
   spec.metadata      = { 'lita_plugin_type' => 'handler' }
 
   spec.files         = `git ls-files`.split($/)
