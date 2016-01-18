@@ -10,6 +10,7 @@ module Lita
 
       route /^giphy$/, :random, command: true
       route /^giphy\s+(.*)$/, :search, command: true
+      route /^giphytrending$/, :trending, command: true
 
       def search(response)
         keywords = response.matches[0][0]
@@ -23,6 +24,13 @@ module Lita
         uri = get_random_uri
         giphy_data = call_giphy(uri)
         image = get_image(giphy_data.body)
+        response.reply image
+      end
+
+      def trending(response)
+        uri = get_trending_uri
+        giphy_data = call_giphy(uri)
+        image = get_random(giphy_data.body)
         response.reply image
       end
 
@@ -40,6 +48,13 @@ module Lita
         # rating - limit results to those rated (y,g, pg, pg-13 or r).
         # fmt - (optional) return results in html or json format (useful for viewing responses as GIFs to debug/test)
         config.api_uri + 'random?' #?q=' + URI.encode(keywords)
+      end
+
+      def get_trending_uri()
+        # limit (optional) limits the number of results returned. By default returns 25 results.
+        # rating - limit results to those rated (y,g, pg, pg-13 or r).
+        # fmt - (optional) return results in html or json format (useful for viewing responses as GIFs to debug/test)
+        config.api_uri + 'trending?'
       end
 
       def get_random(data)
