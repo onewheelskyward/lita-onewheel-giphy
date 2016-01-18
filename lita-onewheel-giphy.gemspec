@@ -4,7 +4,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ['Andrew Kreps']
   spec.email         = ['andrew.kreps@gmail.com']
   spec.description   = 'Lita chat interface to giphy api for MOAR GIFS'
-  spec.summary       = 'Add a summary'
+  spec.summary       = 'Aims to be a complete implementation of the Giphy api.  https://github.com/giphy/GiphyAPI'
   spec.homepage      = 'https://github.com/onewheelskyward/lita-onewheel-giphy'
   spec.license       = 'MIT'
   spec.metadata      = { 'lita_plugin_type' => 'handler' }
@@ -15,9 +15,10 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
 
   spec.add_runtime_dependency 'lita', '~> 4.7'
+  spec.add_runtime_dependency 'rest-client', '~> 1.6'
 
   spec.add_development_dependency 'bundler', '~> 1.3'
-  # spec.add_development_dependency 'pry-byebug'
+  spec.add_development_dependency 'pry-byebug', '~> 3.3'
   spec.add_development_dependency 'rake', '~> 10.4'
   spec.add_development_dependency 'rack-test', '~> 0.6'
   spec.add_development_dependency 'rspec', '~> 3.4'
