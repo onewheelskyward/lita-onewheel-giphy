@@ -18,9 +18,9 @@ describe Lita::Handlers::OnewheelGiphy, lita_handler: true do
   end
 
   it 'gets a random giphy' do
-    mock_fixture('search_good')
+    mock_fixture('random_good')
     send_command 'giphy'
-    expect(replies.last).to eq('http://media2.giphy.com/media/FiGiRei2ICzzG/giphy.gif')
+    expect(replies.last).to eq('http://s3.amazonaws.com/giphygifs/media/Ggjwvmqktuvf2/giphy.gif')
   end
 
   def mock_fixture(fixture)
