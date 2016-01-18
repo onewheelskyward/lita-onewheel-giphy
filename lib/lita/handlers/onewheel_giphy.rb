@@ -15,7 +15,7 @@ module Lita
         keywords = response.matches[0][0]
         uri = get_search_uri(keywords)
         giphy_data = call_giphy(uri)
-        image = get_first(giphy_data.body)
+        image = get_random(giphy_data.body)
         response.reply image
       end
 
@@ -42,9 +42,16 @@ module Lita
         config.api_uri + 'random?' #?q=' + URI.encode(keywords)
       end
 
-      def get_first(data)
+      def get_random(data)
         image_data = JSON.parse(data)
-        image_data['data'][0]['images']['original']['url']
+        image_data['data'][get_random_number(image_data['data'].count)]['images']['original']['url']
+      end
+
+      def get_random_number(max)
+        and_i = Random.new
+        so_far_away = and_i.rand(max)
+        puts "rand: #{so_far_away}"
+        so_far_away
       end
 
       def get_image(data)
