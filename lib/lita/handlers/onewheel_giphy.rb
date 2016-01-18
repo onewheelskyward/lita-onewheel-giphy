@@ -10,7 +10,7 @@ module Lita
 
       route /^giphy$/, :random, command: true, help: {'giphy' => 'Returns a random Giphy image.  Powered by Giphy!  http://giphy.com'}
       route /^giphy\s+(.*)$/, :search, command: true, help: {'giphy [keyword]' => 'Returns a random Giphy image with the specified keyword applied.'}
-      route /^giphytrending$/, :trending, command: true, help: {'giphytranding' => 'Returns a trending Giphy image.'}
+      route /^giphytrending$/, :trending, command: true, help: {'giphytrending' => 'Returns a trending Giphy image.'}
 
       def search(response)
         keywords = response.matches[0][0]
