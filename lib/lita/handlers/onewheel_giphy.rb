@@ -53,6 +53,7 @@ module Lita
       end
 
       def call_giphy(uri)
+        Lita.logger.debug("Calling giphy with #{uri}")
         RestClient.get uri + 'api_key=' + config.api_key
       end
 
