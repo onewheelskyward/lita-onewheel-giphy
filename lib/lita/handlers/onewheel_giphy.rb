@@ -1,4 +1,3 @@
-require 'pry'
 require 'rest-client'
 
 module Lita
@@ -16,7 +15,6 @@ module Lita
         keywords = response.matches[0][0]
         uri = get_search_uri(keywords)
         giphy_data = call_giphy(uri)
-        # binding.pry
         image = get_first(giphy_data.body)
         response.reply image
       end
@@ -24,7 +22,6 @@ module Lita
       def random(response)
         uri = get_random_uri
         giphy_data = call_giphy(uri)
-        # binding.pry
         image = get_image(giphy_data.body)
         response.reply image
       end
@@ -47,13 +44,11 @@ module Lita
 
       def get_first(data)
         image_data = JSON.parse(data)
-        # binding.pry
         image_data['data'][0]['images']['original']['url']
       end
 
       def get_image(data)
         image_data = JSON.parse(data)
-        # binding.pry
         image_data['data']['image_original_url']
       end
 
