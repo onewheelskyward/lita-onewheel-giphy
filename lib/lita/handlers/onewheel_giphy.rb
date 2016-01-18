@@ -32,14 +32,14 @@ module Lita
         # offset - (optional) results offset, defaults to 0.
         # rating - limit results to those rated (y,g, pg, pg-13 or r).
         # fmt - (optional) return results in html or json format (useful for viewing responses as GIFs to debug/test)
-        config.api_uri + 'search?q=' + URI.encode(keywords)
+        config.api_uri + 'search?q=' + URI.encode(keywords) + '&'
       end
 
       def get_random_uri()
         # tag - the GIF tag to limit randomness by
         # rating - limit results to those rated (y,g, pg, pg-13 or r).
         # fmt - (optional) return results in html or json format (useful for viewing responses as GIFs to debug/test)
-        config.api_uri + 'random' #?q=' + URI.encode(keywords)
+        config.api_uri + 'random?' #?q=' + URI.encode(keywords)
       end
 
       def get_first(data)
@@ -48,7 +48,7 @@ module Lita
       end
 
       def call_giphy(uri)
-        RestClient.get uri
+        RestClient.get uri + 'api_key=' + config.api_key
       end
 
       Lita.register_handler(self)
