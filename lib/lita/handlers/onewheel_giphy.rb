@@ -8,11 +8,19 @@ module Lita
       config :rating, default: nil
       config :limit, default: 25
 
+      route /^giphy$/, :random, command: true
       route /^giphy\s+(.*)$/, :search, command: true
 
       def search(response)
         keywords = response.matches[0][0]
         uri = get_search_uri(keywords)
+        giphy_data = call_giphy(uri)
+        image = get_first(giphy_data.body)
+        response.reply image
+      end
+
+      def random(response)
+        uri = get_random_uri
         giphy_data = call_giphy(uri)
         image = get_first(giphy_data.body)
         response.reply image
@@ -25,6 +33,13 @@ module Lita
         # rating - limit results to those rated (y,g, pg, pg-13 or r).
         # fmt - (optional) return results in html or json format (useful for viewing responses as GIFs to debug/test)
         config.api_uri + 'search?q=' + URI.encode(keywords)
+      end
+
+      def get_random_uri()
+        # tag - the GIF tag to limit randomness by
+        # rating - limit results to those rated (y,g, pg, pg-13 or r).
+        # fmt - (optional) return results in html or json format (useful for viewing responses as GIFs to debug/test)
+        config.api_uri + 'random' #?q=' + URI.encode(keywords)
       end
 
       def get_first(data)

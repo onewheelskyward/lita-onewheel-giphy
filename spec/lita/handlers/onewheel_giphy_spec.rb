@@ -8,11 +8,18 @@ describe Lita::Handlers::OnewheelGiphy, lita_handler: true do
       config.handlers.onewheel_giphy.api_key = ''
     end
   end
+
   it { is_expected.to route_command('giphy') }
 
   it 'gets a giphy by string keywords' do
     mock_fixture('search_good')
     send_command 'giphy wat'
+    expect(replies.last).to eq('http://media2.giphy.com/media/FiGiRei2ICzzG/giphy.gif')
+  end
+
+  it 'gets a random giphy' do
+    mock_fixture('search_good')
+    send_command 'giphy'
     expect(replies.last).to eq('http://media2.giphy.com/media/FiGiRei2ICzzG/giphy.gif')
   end
 
