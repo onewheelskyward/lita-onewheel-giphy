@@ -8,9 +8,22 @@ module Lita
       config :rating, default: nil
       config :limit, default: 25
 
-      route /^giphy$/, :random, command: true, help: {'giphy' => 'Returns a random Giphy image.  Powered by Giphy!  http://giphy.com'}
-      route /^giphy\s+(.*)$/, :search, command: true, help: {'giphy [keyword]' => 'Returns a random Giphy image with the specified keyword applied.'}
-      route /^giphytrending$/, :trending, command: true, help: {'giphytrending' => 'Returns a trending Giphy image.'}
+      route /^giphy$/,
+            :random,
+            command: true,
+            help: {'giphy' => 'Returns a random Giphy image.  Powered by Giphy!  http://giphy.com'}
+      route /^giphy\s+(.+)$/,
+            :search,
+            command: true,
+            help: {'giphy [keyword]' => 'Returns a random Giphy image with the specified keyword applied.'}
+      route /^giphytrending$/,
+            :trending,
+            command: true,
+            help: {'giphytrending' => 'Returns a trending Giphy image.'}
+      route /^giphytranslate\s+(.+)$/,
+            :translate,
+            command: true,
+            help: {'giphytranslate' => 'Turns your words into a sweet, sweet Giphy gif.'}
 
       def search(response)
         keywords = response.matches[0][0]
@@ -31,6 +44,14 @@ module Lita
         uri = get_trending_uri
         giphy_data = call_giphy(uri)
         image = get_random(giphy_data.body)
+        response.reply image
+      end
+
+      def translate(response)
+        keywords = response.matches[0][0]
+        uri = get_translate_uri(keywords)
+        giphy_data = call_giphy(uri)
+        image = get_translate_image(giphy_data.body)
         response.reply image
       end
 
@@ -57,6 +78,13 @@ module Lita
         config.api_uri + 'trending?'
       end
 
+      def get_translate_uri(keywords)
+        # s - term or phrase to translate into a GIF
+        # rating - limit results to those rated (y,g, pg, pg-13 or r).
+        # fmt - (optional) return results in html or json format (useful for viewing responses as GIFs to debug/test)
+        config.api_uri + 'translate?s=' + URI.encode(keywords) + '&'
+      end
+
       def get_random(data)
         image_data = JSON.parse(data)
         image_data['data'][get_random_number(image_data['data'].count)]['images']['original']['url']
@@ -72,6 +100,11 @@ module Lita
       def get_image(data)
         image_data = JSON.parse(data)
         image_data['data']['image_original_url']
+      end
+
+      def get_translate_image(data)
+        image_data = JSON.parse(data)
+        image_data['data']['url']
       end
 
       def call_giphy(uri)

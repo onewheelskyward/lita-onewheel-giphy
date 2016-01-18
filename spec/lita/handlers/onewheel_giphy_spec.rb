@@ -12,6 +12,7 @@ describe Lita::Handlers::OnewheelGiphy, lita_handler: true do
   it { is_expected.to route_command('giphy') }
   it { is_expected.to route_command('giphy soon') }
   it { is_expected.to route_command('giphytrending') }
+  it { is_expected.to route_command('giphytranslate boom') }
 
   it 'gets a giphy by string keywords' do
     mock_fixture('search_good')
@@ -29,6 +30,12 @@ describe Lita::Handlers::OnewheelGiphy, lita_handler: true do
     mock_fixture('trending_good')
     send_command 'giphytrending'
     expect(replies.last).to eq('http://media0.giphy.com/media/op7uqYWBm3R04/giphy.gif')
+  end
+
+  it 'gets a translate giphy' do
+    mock_fixture('translate_good')
+    send_command 'giphytranslate boom'
+    expect(replies.last).to eq('http://giphy.com/gifs/superman-santa-chandler-bing-wWAIKcFASEFz2')
   end
 
   def mock_fixture(fixture)
