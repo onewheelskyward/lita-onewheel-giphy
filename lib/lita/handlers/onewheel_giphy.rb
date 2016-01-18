@@ -104,7 +104,7 @@ module Lita
 
       def get_translate_image(data)
         image_data = JSON.parse(data)
-        image_data['data']['url']
+        image_data['data']['images']['original']['url']
       end
 
       def call_giphy(uri)

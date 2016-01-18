@@ -35,7 +35,7 @@ describe Lita::Handlers::OnewheelGiphy, lita_handler: true do
   it 'gets a translate giphy' do
     mock_fixture('translate_good')
     send_command 'giphytranslate boom'
-    expect(replies.last).to eq('http://giphy.com/gifs/superman-santa-chandler-bing-wWAIKcFASEFz2')
+    expect(replies.last).to eq('http://media0.giphy.com/media/wWAIKcFASEFz2/giphy.gif')
   end
 
   def mock_fixture(fixture)
