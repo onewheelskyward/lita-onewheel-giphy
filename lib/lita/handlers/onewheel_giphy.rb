@@ -29,7 +29,6 @@ module Lita
 
       def get_first(data)
         image_data = JSON.parse(data)
-        puts image_data.inspect
         image_data['data'][0]['images']['original']['url']
       end
 
