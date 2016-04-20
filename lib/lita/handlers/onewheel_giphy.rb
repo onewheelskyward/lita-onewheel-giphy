@@ -27,6 +27,7 @@ module Lita
 
       def search(response)
         keywords = response.matches[0][0]
+        Lita.logger.debug "Searching giphy for #{keywords}"
         uri = get_search_uri(keywords)
         giphy_data = call_giphy(uri)
         image = get_random(giphy_data.body)
@@ -87,28 +88,36 @@ module Lita
 
       def get_random(data)
         image_data = JSON.parse(data)
-        image_data['data'][get_random_number(image_data['data'].count)]['images']['original']['url']
+        if image_data['data'].count == 0
+          Lita.logger.debug 'No images found.'
+          return
+        end
+        image = image_data['data'][get_random_number(image_data['data'].count)]['images']['original']['url']
+        Lita.logger.debug "get_random returning #{image}"
+        image
       end
 
       def get_random_number(max)
         and_i = Random.new
-        so_far_away = and_i.rand(max)
-        puts "rand: #{so_far_away}"
-        so_far_away
+        and_i.rand(max)
       end
 
       def get_image(data)
         image_data = JSON.parse(data)
-        image_data['data']['image_original_url']
+        image = image_data['data']['image_original_url']
+        Lita.logger.debug "get_image returning #{image}"
+        image
       end
 
       def get_translate_image(data)
         image_data = JSON.parse(data)
-        image_data['data']['images']['original']['url']
+        image = image_data['data']['images']['original']['url']
+        Lita.logger.debug "get_translate_image returning #{image}"
+        image
       end
 
       def call_giphy(uri)
-        Lita.logger.debug("Calling giphy with #{uri}")
+        Lita.logger.debug("Calling giphy with #{uri + 'api_key=' + config.api_key}")
         RestClient.get uri + 'api_key=' + config.api_key
       end
 
