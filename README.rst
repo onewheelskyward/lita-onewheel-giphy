@@ -3,9 +3,13 @@
 [![Build Status](https://travis-ci.org/onewheelskyward/lita-onewheel-giphy.png?branch=master)](https://travis-ci.org/onewheelskyward/lita-onewheel-giphy)
 [![Coverage Status](https://coveralls.io/repos/onewheelskyward/lita-onewheel-giphy/badge.png)](https://coveralls.io/r/onewheelskyward/lita-onewheel-giphy)
 
+Deprecated
+----
+
 Description
 ----
-Aims to be a complete implementation of the Giphy api.  https://github.com/giphy/GiphyAPI
+Aimed to be a complete implementation of the Giphy api.  https://github.com/giphy/GiphyAPI
+It turns out they're not as good at search as Google, so I've put this functionality into https://github.com/onewheelskyward/lita-onewheel-images
 
 Installation
 ----
@@ -28,5 +32,3 @@ Implementation list:
 - random NOPE
 - trending NOPE
 - stickers (search, translate, random, trending) NOPE NOPE NOPE NOPE
-
-
