@@ -1,7 +1,10 @@
-# lita-onewheel-giphy
+lita-onewheel-giphy
+-------------------
 
-[![Build Status](https://travis-ci.org/onewheelskyward/lita-onewheel-giphy.png?branch=master)](https://travis-ci.org/onewheelskyward/lita-onewheel-giphy)
-[![Coverage Status](https://coveralls.io/repos/onewheelskyward/lita-onewheel-giphy/badge.png)](https://coveralls.io/r/onewheelskyward/lita-onewheel-giphy)
+.. image:: https://travis-ci.org/onewheelskyward/lita-onewheel-giphy.svg?branch=master
+:target: https://travis-ci.org/onewheelskyward/lita-onewheel-giphy
+.. image:: https://coveralls.io/repos/github/onewheelskyward/lita-onewheel-giphy/badge.svg?branch=master
+:target: https://coveralls.io/github/onewheelskyward/lita-onewheel-giphy?branch=master
 
 Deprecated
 ----
