@@ -13,7 +13,8 @@ module Lita
             command: true,
             help: {'giphy' => 'Returns a random Giphy image.  Powered by Giphy!  http://giphy.com'}
       route /^giphy\s+(.+)$/,
-            :search,
+            :translate,
+            # :search,
             command: true,
             help: {'giphy [keyword]' => 'Returns a random Giphy image with the specified keyword applied.'}
       route /^giphytrending$/,
