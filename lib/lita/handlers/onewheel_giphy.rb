@@ -8,20 +8,20 @@ module Lita
       config :rating, default: nil
       config :limit, default: 25
 
-      route /^giphy$/,
+      route /^giphy$/i,
             :random,
             command: true,
             help: {'giphy' => 'Returns a random Giphy image.  Powered by Giphy!  http://giphy.com'}
-      route /^giphy\s+(.+)$/,
+      route /^giphy\s+(.+)$/i,
             :translate,
             # :search,
             command: true,
             help: {'giphy [keyword]' => 'Returns a random Giphy image with the specified keyword applied.'}
-      route /^giphytrending$/,
+      route /^giphytrending$/i,
             :trending,
             command: true,
             help: {'giphytrending' => 'Returns a trending Giphy image.'}
-      route /^giphytranslate\s+(.+)$/,
+      route /^giphytranslate\s+(.+)$/i,
             :translate,
             command: true,
             help: {'giphytranslate' => 'Turns your words into a sweet, sweet Giphy gif.'}
