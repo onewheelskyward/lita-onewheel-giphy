@@ -10,14 +10,22 @@ describe Lita::Handlers::OnewheelGiphy, lita_handler: true do
   end
 
   it { is_expected.to route_command('giphy') }
+  it { is_expected.to route_command('gif') }
+  it { is_expected.to route_command('gif x') }
   it { is_expected.to route_command('giphy soon') }
   it { is_expected.to route_command('giphytrending') }
   it { is_expected.to route_command('giphytranslate boom') }
 
   it 'gets a giphy by string keywords' do
-    mock_fixture('search_good')
+    mock_fixture('translate_good')
     send_command 'giphy wat'
-    expect(replies.last).to eq('http://media2.giphy.com/media/FiGiRei2ICzzG/giphy.gif')
+    expect(replies.last).to eq('https://media1.giphy.com/media/T2NINhwlHgOSk/giphy.gif')
+  end
+
+  it 'gets a gif by string keywords' do
+    mock_fixture('translate_good')
+    send_command 'gif wat'
+    expect(replies.last).to eq('https://media1.giphy.com/media/T2NINhwlHgOSk/giphy.gif')
   end
 
   it 'gets a random giphy' do
@@ -35,7 +43,7 @@ describe Lita::Handlers::OnewheelGiphy, lita_handler: true do
   it 'gets a translate giphy' do
     mock_fixture('translate_good')
     send_command 'giphytranslate boom'
-    expect(replies.last).to eq('http://media0.giphy.com/media/wWAIKcFASEFz2/giphy.gif')
+    expect(replies.last).to eq('https://media1.giphy.com/media/T2NINhwlHgOSk/giphy.gif')
   end
 
   def mock_fixture(fixture)
