@@ -21,6 +21,10 @@ module Lita
             # :search,
             command: true,
             help: {'giphy [keyword]' => 'Returns a random Giphy image with the specified keyword applied.'}
+      route /^giphysearch\s+(.+)$/i,
+            :search,
+            command: true,
+            help: {'giphysearch [keyword]' => 'Returns a random Giphy image with the specified keyword applied via search instead of translate.'}
       route /^gif\s+(.+)$/i,
             :translate,
             command: true,
