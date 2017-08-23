@@ -41,6 +41,12 @@ describe Lita::Handlers::OnewheelGiphy, lita_handler: true do
     expect(replies.last).to eq('http://s3.amazonaws.com/giphygifs/media/Ggjwvmqktuvf2/giphy.gif')
   end
 
+  it 'gets no trending giphy' do
+    mock_fixture('trending_empty')
+    send_command 'giphytrending'
+    expect(replies.last).to eq(nil)
+  end
+
   it 'gets a trending giphy' do
     mock_fixture('trending_good')
     send_command 'giphytrending'

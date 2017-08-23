@@ -42,6 +42,7 @@ module Lita
         keywords = response.matches[0][0]
         Lita.logger.debug "Searching giphy for #{keywords}"
         uri = get_search_uri(keywords)
+        Lita.logger.debug "search: #{uri}"
         giphy_data = call_giphy(uri)
         image = get_random(giphy_data.body)
         response.reply image
@@ -49,6 +50,7 @@ module Lita
 
       def random(response)
         uri = get_random_uri
+        Lita.logger.debug "random: #{uri}"
         giphy_data = call_giphy(uri)
         image = get_image(giphy_data.body)
         response.reply image
@@ -56,6 +58,7 @@ module Lita
 
       def trending(response)
         uri = get_trending_uri
+        Lita.logger.debug "trending: #{uri}"
         giphy_data = call_giphy(uri)
         image = get_random(giphy_data.body)
         response.reply image
@@ -64,6 +67,7 @@ module Lita
       def translate(response)
         keywords = response.matches[0][0]
         uri = get_translate_uri(keywords)
+        Lita.logger.debug "translate: #{uri}"
         giphy_data = call_giphy(uri)
         image = get_translate_image(giphy_data.body)
         response.reply image
@@ -102,7 +106,7 @@ module Lita
       def get_random(data)
         image_data = JSON.parse(data)
         if image_data['data'].count == 0
-          Lita.logger.debug 'No images found.'
+          Lita.logger.debug 'get_random: No images found.'
           return
         end
         image = image_data['data'][get_random_number(image_data['data'].count)]['images']['original']['url']
